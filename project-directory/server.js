@@ -56,7 +56,7 @@ try {
 app.use(express.static("public"));
 app.use(cors(corsOptions));
 
-// Start the server and listen on port 25565 for connections
+// Start the server and listen on port 26001 for connections
 const PORT = process.env.PORT || 26001;
 server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
@@ -83,4 +83,21 @@ io.on("connection", (socket) => {
   // How many users are connected
   connected_users.push({ socketId: socket.id });
   console.log(formattedTime, "Connected users:", connected_users.length);
+
+  
+  socket.on("disconnect", () => {
+    const disconnectedUser = connected_users.find(
+      (user) => user.socketId === socket.id
+    );
+    if (disconnectedUser) {
+      connected_users = connected_users.filter(
+        (user) => user.socketId !== socket.id
+      );
+      console.log(
+        formattedTime,
+        `User with socket ID: ${socket.id} disconnected.`
+      );
+      console.log(formattedTime, "Connected users:", connected_users.length);
+    }
+  });
 });
