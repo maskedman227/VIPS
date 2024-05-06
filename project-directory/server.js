@@ -30,7 +30,7 @@ try {
 }
 try {
   var server = http.createServer(app);
-  console.log("\x1b[32m%s\x1b[0m", "server loaded successfully");
+  console.log("\x1b[32m%s\x1b[0m", "app loaded successfully");
 } catch (error) {
   console.log("\x1b[31m%s\x1b[0m", "failed to load server", error);
 }
@@ -61,7 +61,6 @@ const PORT = process.env.PORT || 26001;
 server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-
 
 // Defining the standard variables
 let connected_users = [];
