@@ -1,0 +1,8 @@
+body {
+    background-color: black;
+}
+header h1 {
+    color: white;
+    text-align: center;
+    font-size: 40px;
+}
